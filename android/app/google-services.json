@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "317572974295",
+    "project_id": "prac1-4def4",
+    "storage_bucket": "prac1-4def4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317572974295:android:33e7c5e3bb209dcc1f5292",
+        "android_client_info": {
+          "package_name": "com.topzee.prac1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317572974295-0b4d7e7jgmntsklib4bp1jlt1apbjs2h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiDzdx6qqTwa6k8dW-jtix_cB4zE6HnlU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317572974295-0b4d7e7jgmntsklib4bp1jlt1apbjs2h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
