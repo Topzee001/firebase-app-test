@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:prac1/firebase_options.dart';
 import 'package:prac1/services/auth/auth_user.dart';
 import 'package:prac1/services/auth/auth_provider.dart';
 import 'package:prac1/services/auth/auth_exceptions.dart';
@@ -6,6 +8,13 @@ import 'package:firebase_auth/firebase_auth.dart'
     show FirebaseAuth, FirebaseAuthException;
 
 class FirebaseAuthProvider implements AuthProvider {
+  @override
+  Future<void> initialize() async {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
+
   @override
   Future<AuthUser> createUser({
     required String email,
@@ -30,10 +39,10 @@ class FirebaseAuthProvider implements AuthProvider {
       } else if (e.code == 'invalid-email') {
         throw InvalidEmailAuthException();
       } else {
-        throw GenericAuthAuthException();
+        throw GenericAuthException();
       }
     } catch (_) {
-      throw GenericAuthAuthException();
+      throw GenericAuthException();
     }
   }
 
@@ -48,7 +57,7 @@ class FirebaseAuthProvider implements AuthProvider {
   }
 
   @override
-  Future<AuthUser> login({
+  Future<AuthUser> logIn({
     required String email,
     required String password,
   }) async {
@@ -69,15 +78,15 @@ class FirebaseAuthProvider implements AuthProvider {
       } else if (e.code == 'wrong-password') {
         throw WrongPasswordAuthException();
       } else {
-        throw GenericAuthAuthException();
+        throw GenericAuthException();
       }
     } catch (_) {
-      throw GenericAuthAuthException();
+      throw GenericAuthException();
     }
   }
 
   @override
-  Future<void> logout() async {
+  Future<void> logOut() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       await FirebaseAuth.instance.signOut();
@@ -90,7 +99,7 @@ class FirebaseAuthProvider implements AuthProvider {
   Future<void> sendEmailVerification() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      user.sendEmailVerification();
+      await user.sendEmailVerification();
     } else {
       throw UserNotLoggedInAuthException();
     }
