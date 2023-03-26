@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:prac1/constants/routes.dart';
-import 'package:prac1/services/auth/auth_exceptions.dart';
-import 'package:prac1/services/auth/auth_service.dart';
 
-import 'package:prac1/utilities/show_error_dialog.dart';
+import '../constants/routes.dart';
+import '../services/auth/auth_exceptions.dart';
+import '../services/auth/auth_service.dart';
+import '../utilities/show_error_dialog.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -61,11 +61,11 @@ class _RegisterViewState extends State<RegisterView> {
               final email = _email.text;
               final password = _password.text;
               try {
-                AuthService.firebase().createUser(
+                await AuthService.firebase().createUser(
                   email: email,
                   password: password,
                 );
-                AuthService.firebase().sendEmailVerification();
+                await AuthService.firebase().sendEmailVerification();
                 Navigator.of(context).pushNamed(verifyEmailRoute);
               } on WeakPasswordAuthException {
                 await showErrorDialog(

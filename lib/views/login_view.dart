@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:prac1/constants/routes.dart';
-import 'package:prac1/services/auth/auth_exceptions.dart';
-import 'package:prac1/services/auth/auth_service.dart';
-import 'package:prac1/utilities/show_error_dialog.dart';
+
+import '../constants/routes.dart';
+import '../services/auth/auth_exceptions.dart';
+import '../services/auth/auth_service.dart';
+import '../utilities/show_error_dialog.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -60,7 +61,7 @@ class _LoginViewState extends State<LoginView> {
               final email = _email.text;
               final password = _password.text;
               try {
-                AuthService.firebase().logIn(
+                await AuthService.firebase().logIn(
                   email: email,
                   password: password,
                 );
@@ -104,7 +105,7 @@ class _LoginViewState extends State<LoginView> {
                   (route) => false,
                 );
               },
-              child: Text('Not registered yet? Register here'))
+              child: const Text('Not registered yet? Register here'))
         ],
       ),
     );
